@@ -136,9 +136,18 @@ def main():
     template_path = Image.open(template_path)
     template_path = template_path.convert("RGBA")
 
-    # Stamp and save it
+    # Stamp and save PNG
     stamped_folder = stamp(mask, template_path)
     stamped_folder.save(outpath, 'PNG')
+
+    print(__file__)
+    # Generate macOS iconset
+    script_path = str(os.path.dirname(
+        os.path.abspath(__file__)).rsplit('/', 0)[0])
+    os.system('python {} {}'.format(script_path + '/scripts/gen_iconset.py',
+                                    outpath))
+
+    print("[\033[92mOK\033[0m]: all generated!")
 
 
 if __name__ == "__main__":
