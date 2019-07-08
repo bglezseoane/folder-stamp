@@ -24,13 +24,7 @@ folstamp apple.png -rgb 84 151 93 green_folder.png output.png
 
 ## To set up
 
-You can use Homebrew to install this program via my tap repository:
-
-```sh
-brew install glezseoane/homebrew-tap/folstamp
-```
-
-You also can use PyPI to install this program:
+You can use PyPI to install this program:
 
 ```sh
 pip install folstamp
