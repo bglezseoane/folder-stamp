@@ -80,7 +80,10 @@ def handle_arguments(argv: List) -> Tuple:
         blue = int(argv[index + 3])
     else:
         rgb_shape = False
-        red = green = blue = None
+        # Uses default Mojave blue to the folder stamps
+        red = 82
+        green = 145
+        blue = 189
 
     return mask_path, black_background, template_path, outpath, rgb_shape, \
         red, green, blue
