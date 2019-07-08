@@ -1,0 +1,25 @@
+.\" Manpage for folstamp.
+.\" Contact dev@glezseoane.com to any requirement.
+.TH man 1 "8 Jul 2019" "1.0" "folstamp man page"
+.SH NAME
+folstamp \- generate custom macOS folder icons
+.SH SYNOPSIS
+\fBmonoshape\fR\ \fI\ mask_path\fR\ [\fItemplate_path\fR\] [\fB\-bb\fR] [\fB\-rgb\fR red green blue] \fI\ output_path\fR
+.SH DESCRIPTION
+This program takes an image that has well differentiated light and dark tones and use it to create a custom stamped macOS folder icon. Generate PNG, Icon set and ICNS files.
+
+The mask and output path arguments are mandatory and have to be the first and the last arguments, respectively. The template path is optional and if it is not passed, the default Mojave folder icon will be used.
+
+If the RGB flag is used, the next three arguments have to be the red, green and blue integer colour values, respectively. E.g.: "...-rgb 40 54 11...". The RGB codes are to define the colour of the stamp. If they are omitted, the default Mojave blue will be used to the stamp.
+.SH OPTIONS
+.IP "\fB\--black_background\fR"
+Considers the mask inverse situation: dark background and light shape.
+.IP "\fB\-rgb\fR"
+Draws the output shape with the input rgb colour. The next three arguments have to be the red, green and blue integer colour values.
+
+.IP "\fB\-bb\fR"
+Idem to \fI\--black_background\fR.
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Borja Gonzalez Seoane <dev@glezseoane.com> is the author of \fBfolstamp\fR.
