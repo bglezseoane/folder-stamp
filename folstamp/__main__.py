@@ -72,7 +72,18 @@ def handle_arguments(argv: List) -> Tuple:
 
     black_background = '-bb' in argv or '--black_background' in argv
 
-    return mask_path, black_background, template_path, outpath
+    if '-rgb' in argv:
+        rgb_shape = True
+        index = argv.index('-rgb')
+        red = int(argv[index + 1])
+        green = int(argv[index + 2])
+        blue = int(argv[index + 3])
+    else:
+        rgb_shape = False
+        red = green = blue = None
+
+    return mask_path, black_background, template_path, outpath, rgb_shape, \
+        red, green, blue
 
 
 # =============================================
@@ -102,11 +113,11 @@ def stamp(mask: 'Image.Image', background_folder: 'Image.Image') \
 # =                    MAIN                   =
 # =============================================
 def main():
-    mask_path, black_background, template_path, outpath\
-        = handle_arguments(sys.argv)
+    mask_path, black_background, template_path, outpath, rgb_shape, red, \
+        green, blue = handle_arguments(sys.argv)
 
     mask = extract_shape(mask_path, black_background, False,
-                         False, None, None, None)
+                         rgb_shape, red, green, blue)
 
     # Open the folder template to folstamp
     template_path = Image.open(template_path)
