@@ -17,6 +17,8 @@ from typing import Tuple, List
 from PIL import Image
 from monoshape.__main__ import extract_shape
 
+from folstamp.scripts import gen_iconset
+
 __author__ = 'Borja González Seoane'
 __copyright__ = 'Copyright 2019, Borja González Seoane'
 __credits__ = 'Borja González Seoane'
@@ -90,7 +92,9 @@ def handle_arguments(argv: List) -> Tuple:
         elif not os.path.isfile(template_path):
             raise FileNotFoundError
     elif not argv:  # Uses default Mojave folder icon
-        template_path = 'util/GenericFolderIcon.png'
+        template_path = str(os.path.dirname(
+            os.path.abspath(__file__)).rsplit('/', 1)[0]) \
+                        + '/util/GenericFolderIcon.png'
     else:
         raise IOError("Bad command composition! Please, read the manual.")
 
@@ -142,10 +146,7 @@ def main():
 
     print(__file__)
     # Generate macOS iconset
-    script_path = str(os.path.dirname(
-        os.path.abspath(__file__)).rsplit('/', 0)[0])
-    os.system('python {} {}'.format(script_path + '/scripts/gen_iconset.py',
-                                    outpath))
+    gen_iconset.main([outpath])
 
     print("[\033[92mOK\033[0m]: all generated!")
 
