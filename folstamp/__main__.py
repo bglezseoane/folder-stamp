@@ -42,50 +42,59 @@ def handle_arguments(argv: List) -> Tuple:
     :return: Interpreted argument vector
     :rtype: Tuple
     """
-    # Assert composition integrity
-    if len(argv) < 3 or len(argv) > 8:
-        raise IOError("Bad command composition! Please, read the manual.")
-
-    # The input path is always the first argument
-    mask_path = argv[1]
+    # The input path is always the first argument and it is mandatory
+    mask_path = argv.pop(0)
     if not mask_path.endswith('.png'):
         raise ValueError("The mask file has to be a PNG file and has to "
                          "end with the .png extension.")
     elif not os.path.isfile(mask_path):
-        raise FileNotFoundError
+        raise FileNotFoundError(mask_path)
 
-    # The template path is always the second last argument
-    template_path = argv[len(argv) - 2]
-    if not template_path.endswith('.png'):
-        raise ValueError("The template file has to be a PNG file and has to "
-                         "end with the .png extension.")
-    elif not os.path.isfile(template_path):
-        raise FileNotFoundError
-
-    # The output path is always the last argument
-    outpath = argv[len(argv) - 1]
+    # The output path is always the last argument and it is mandatory
+    outpath = argv.pop(len(argv) - 1)
     if not outpath.endswith('.png'):
         raise ValueError("The output file has to be a PNG file and has to "
                          "end with the .png extension.")
     # elif os.path.isfile(outpath):
     #     raise FileExistsError
 
-    black_background = '-bb' in argv or '--black_background' in argv
-
-    if '-rgb' in argv:
-        rgb_shape = True
-        index = argv.index('-rgb')
-        red = int(argv[index + 1])
-        green = int(argv[index + 2])
-        blue = int(argv[index + 3])
+    # Optional black background switch
+    if '-bb' in argv:
+        black_background = True
+        argv.remove('-bb')
+    elif '--black_background' in argv:
+        black_background = True
+        argv.remove('--black_background')
     else:
-        rgb_shape = False
-        # Uses default Mojave blue to the folder stamps
-        red = 82
-        green = 145
-        blue = 189
+        black_background = False
 
-    return mask_path, black_background, template_path, outpath, rgb_shape, \
+    # Optional rgb switch
+    if '-rgb' in argv:
+        index = argv.index('-rgb')
+        red = int(argv.pop(index + 1))
+        green = int(argv.pop(index + 1))
+        blue = int(argv.pop(index + 1))
+        argv.remove('-rgb')
+    else:
+        # Uses default Mojave blue to the folder stamps
+        red = 90
+        green = 183
+        blue = 227
+
+    # If remains some param, it should be the optional template path argument
+    if len(argv) == 1:
+        template_path = argv[len(argv) - 2]
+        if not template_path.endswith('.png'):
+            raise ValueError("The template file has to be a PNG file and has "
+                             "to end with the .png extension.")
+        elif not os.path.isfile(template_path):
+            raise FileNotFoundError
+    elif not argv:  # Uses default Mojave folder icon
+        template_path = 'util/GenericFolderIcon.png'
+    else:
+        raise IOError("Bad command composition! Please, read the manual.")
+
+    return mask_path, black_background, template_path, outpath, \
         red, green, blue
 
 
@@ -116,11 +125,11 @@ def stamp(mask: 'Image.Image', background_folder: 'Image.Image') \
 # =                    MAIN                   =
 # =============================================
 def main():
-    mask_path, black_background, template_path, outpath, rgb_shape, red, \
-        green, blue = handle_arguments(sys.argv)
+    mask_path, black_background, template_path, outpath, red, green, blue \
+        = handle_arguments(sys.argv[1:])
 
     mask = extract_shape(mask_path, black_background, False,
-                         rgb_shape, red, green, blue)
+                         True, red, green, blue)
 
     # Open the folder template to folstamp
     template_path = Image.open(template_path)
