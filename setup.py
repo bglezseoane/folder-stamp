@@ -16,7 +16,7 @@ __status__ = 'Development'
 
 setup(
     name='folstamp',
-    version='1.0',
+    version='1.0.1',
     packages=['folstamp', 'folstamp.scripts'],
     entry_points={
         'console_scripts': [
@@ -30,7 +30,8 @@ setup(
                 ('share/man/man1', ['manpages/folstamp.1']),
                 ("", ["LICENSE"])],
     url='https://github.com/GlezSeoane/folder-stamp',
-    download_url='https://github.com/GlezSeoane/folder-stamp/archive/v1.0.tar.gz',
+    download_url='https://github.com/GlezSeoane/folder-stamp/archive/v1.0.1'
+                 '.tar.gz',
     license='LICENSE',
     author='Borja González Seoane',
     author_email='dev@glezseoane.com',
