@@ -5,17 +5,21 @@ Generate custom macOS folder icons with a desired image as stamp.
 
 ## Some examples
 
-```sh
-folstamp util/apple.png output.png
-```
-
-![Use demonstration](docs/demo.png?raw=true "Use demonstration")
+The most simply use:
 
 ```sh
-folstamp util/apple.png -rgb 84 151 93 util/green_folder.png output.png
+folstamp apple.png output.png
 ```
 
-![Use demonstration](docs/demo2.png?raw=true "Use demonstration")
+![Use demonstration](docs/demo.jpg?raw=true "Use demonstration")
+
+Using a green folder icon:
+
+```sh
+folstamp apple.png -rgb 84 151 93 green_folder.png output.png
+```
+
+![Use demonstration](docs/demo2.jpg?raw=true "Use demonstration")
 
 
 ## To set up
