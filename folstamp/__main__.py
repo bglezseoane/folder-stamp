@@ -128,6 +128,7 @@ def main():
     mask_path, black_background, template_path, outpath, red, green, blue \
         = handle_arguments(sys.argv[1:])
 
+    # Use Monoshape library to get the well format mask
     mask = extract_shape(mask_path, black_background, False,
                          True, red, green, blue)
 
@@ -135,6 +136,7 @@ def main():
     template_path = Image.open(template_path)
     template_path = template_path.convert("RGBA")
 
+    # Stamp and save it
     stamped_folder = stamp(mask, template_path)
     stamped_folder.save(outpath, 'PNG')
 
