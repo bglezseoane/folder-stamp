@@ -9,14 +9,14 @@ __author__ = 'Borja González Seoane'
 __copyright__ = 'Copyright 2019, Borja González Seoane'
 __credits__ = 'Borja González Seoane'
 __license__ = 'LICENSE'
-__version__ = '1.0.1'
+__version__ = '1.1'
 __maintainer__ = 'Borja González Seoane'
 __email__ = 'dev@glezseoane.com'
 __status__ = 'Development'
 
 setup(
     name='folstamp',
-    version='1.0.1',
+    version='1.1',
     packages=['folstamp', 'folstamp.scripts'],
     entry_points={
         'console_scripts': [
