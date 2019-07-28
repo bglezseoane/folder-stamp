@@ -9,14 +9,14 @@ __author__ = 'Borja González Seoane'
 __copyright__ = 'Copyright 2019, Borja González Seoane'
 __credits__ = 'Borja González Seoane'
 __license__ = 'LICENSE'
-__version__ = '1.0.1'
+__version__ = '1.1'
 __maintainer__ = 'Borja González Seoane'
 __email__ = 'dev@glezseoane.com'
 __status__ = 'Development'
 
 setup(
     name='folstamp',
-    version='1.0.1',
+    version='1.1',
     packages=['folstamp', 'folstamp.scripts'],
     entry_points={
         'console_scripts': [
@@ -24,7 +24,7 @@ setup(
         ],
     },
     python_requires='>=3.6',
-    install_requires=['monoshape==1.0', 'pillow==6.0.0'],
+    install_requires=['monoshape==1.1', 'pillow==6.1'],
     data_files=[('util', ['util/GenericFolderIcon.png', 'util/apple.png',
                           'util/green_folder.png']),
                 ('share/man/man1', ['manpages/folstamp.1']),

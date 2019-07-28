@@ -23,7 +23,7 @@ __author__ = 'Borja González Seoane'
 __copyright__ = 'Copyright 2019, Borja González Seoane'
 __credits__ = 'Borja González Seoane'
 __license__ = 'LICENSE'
-__version__ = '1.0.1'
+__version__ = '1.1'
 __maintainer__ = 'Borja González Seoane'
 __email__ = 'dev@glezseoane.com'
 __status__ = 'Development'
@@ -117,11 +117,11 @@ def stamp(mask: 'Image.Image', background_folder: 'Image.Image') \
     :rtype: 'Image.Image'
     """
     mask = deepcopy(mask)
-    mask = mask.resize((400, 400))
+    mask = mask.resize((500, 500))
 
     stamped_folder = deepcopy(background_folder)
     stamped_folder = stamped_folder.resize((1024, 1024))
-    stamped_folder.paste(mask, (312, 350), mask)
+    stamped_folder.paste(mask, (262, 300), mask)
     return stamped_folder
 
 
