@@ -24,7 +24,7 @@ setup(
         ],
     },
     python_requires='>=3.6',
-    install_requires=['monoshape==1.2', 'pillow==6.2.0'],
+    install_requires=['monoshape==1.2', 'pillow==8.3.2'],
     data_files=[('util', ['util/GenericFolderIcon.png', 'util/apple.png',
                           'util/green_folder.png']),
                 ('share/man/man1', ['manpages/folstamp.1']),
